@@ -4,6 +4,10 @@ class Node(object):
         self.data = data
         self.nextNode = nextNode
 
+    def __str__(self):
+      return str(self.data)       
+    
+
 class linked_list(object):
 
   def __init__(self,head=None,tail=None):
@@ -58,9 +62,9 @@ class linked_list(object):
     return prevHead.data
 
   def empty(self):
-    return self.size() == 0
+    return len(self) == 0
 
-  def size(self):
+  def __len__(self):
     current = self.head
     count = 0
     while current:
@@ -68,8 +72,25 @@ class linked_list(object):
       current = current.nextNode
     return count
 
-  def PrintList( self ):
+  def __str__(self):
+    myStr = "["
     node = self.head
     while node != None:
-      print node.data
-      node = node.nextNode  
+      myStr = myStr + str(node.data) + ","
+      node = node.nextNode
+    myStr = myStr[:len(myStr)-1] + "]"
+    return myStr
+
+  def __iter__(self):
+    self.start = self.head
+    self.end = self.tail
+    return self
+
+  def next(self): # in py 3, __next__
+    a = self.start
+    if a == self.end:
+        raise StopIteration
+    self.start = a.nextNode
+    return a
+
+  # could implement getitem instead       
