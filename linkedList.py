@@ -17,69 +17,81 @@ class linked_list(object):
   def push_back(self,data):
     newNode = Node(data)
     
-    # If the list is empty, make newNode the head
-    if self.head == None:
+    if self.empty():
       self.head = newNode
-
-    # If there is a tail, make it point to newNode,
-    # and make newNode the new tail
-    if self.tail != None:
+    else:
       self.tail.nextNode = newNode
+
     self.tail = newNode
 
   def push_front(self,data):
+    wasEmpty = self.empty()
+
     newNode = Node(data,self.head)
     self.head = newNode
 
-    # If the list is empty, make newNode the tail
-    if self.tail == None:
+    if wasEmpty:
       self.tail = newNode
 
   def pop_back(self):
     if self.empty():
       raise RuntimeError
-    # find the node that points to the tail
-    # make this node the tail, and make the new tail.nextNode = None 
-    node = self.head
-    while node != None:
-      if node == self.tail:
-        returnData = node.data
-        self.head = None
-        self.tail = None
-        return returnData
-      if node.nextNode == self.tail:
-        returnData = self.tail.data
-        self.tail = node
-        self.tail.nextNode = None
-        return returnData
-      node = node.nextNode
+
+    prevTail = self.tail
+
+    if self.oneNode():
+      self.makeEmpty()
+    else:
+      # find the node that points to the tail
+      # make this node the tail, and make the new tail.nextNode = None 
+      node = self.head
+      while node:
+        if node.nextNode == self.tail:
+          self.tail = node
+          self.tail.nextNode = None
+          break
+        node = node.nextNode
+
+    return prevTail.data
 
   def pop_front(self):
     if self.empty():
       raise RuntimeError
+
     prevHead = self.head
-    self.head = prevHead.nextNode
+
+    if self.oneNode():
+      self.makeEmpty() 
+    else: 
+      self.head = prevHead.nextNode
+
     return prevHead.data
 
+  def oneNode(self):
+    return self.head == self.tail and self.head != None
+
+  def makeEmpty(self):
+    self.head = self.tail = None
+
   def empty(self):
-    return len(self) == 0
+    return self.head == None and self.tail == None
 
   def __len__(self):
-    current = self.head
-    count = 0
-    while current:
-      count += 1
-      current = current.nextNode
-    return count
+    currentNode = self.head
+    numNodes = 0
+    while currentNode:
+      numNodes += 1
+      currentNode = currentNode.nextNode
+    return numNodes
 
   def __str__(self):
-    myStr = "["
+    contents = ""
     node = self.head
     while node != None:
-      myStr = myStr + str(node.data) + ","
+      contents += str(node.data) + ","
       node = node.nextNode
-    myStr = myStr[:len(myStr)-1] + "]"
-    return myStr
+    contents = contents[:len(contents)-1]
+    return "[" + contents + "]"
 
   def __iter__(self):
     self.start = self.head

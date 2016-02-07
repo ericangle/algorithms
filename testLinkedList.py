@@ -47,6 +47,28 @@ class test_linked_list (unittest.TestCase):
         self.assertEquals(ll.pop_back(), "foo")
         self.assertEquals(ll.pop_back(), 1)
         self.assertTrue(ll.empty())
+    def test_len(self):
+        ll = linked_list()
+        self.assertEquals(len(ll),0)
+        ll.push_back(1)
+        self.assertEquals(len(ll),1)
+        ll.push_back(2)
+        self.assertEquals(len(ll),2)
+        ll.pop_back()
+        self.assertEquals(len(ll),1)
+        ll.pop_back()
+        self.assertEquals(len(ll),0)
+    def test_str(self):
+        ll = linked_list()
+        self.assertEquals(str(ll),"[]")
+        ll.push_back(1)
+        self.assertEquals(str(ll),"[1]")
+        ll.push_back(2)
+        self.assertEquals(str(ll),"[1,2]")
+        ll.pop_back()
+        self.assertEquals(str(ll),"[1]")
+        ll.pop_back()
+        self.assertEquals(str(ll),"[]")
 
 if __name__ == '__main__':
     unittest.main()
