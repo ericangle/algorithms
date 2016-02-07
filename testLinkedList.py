@@ -69,6 +69,22 @@ class test_linked_list (unittest.TestCase):
         self.assertEquals(str(ll),"[1]")
         ll.pop_back()
         self.assertEquals(str(ll),"[]")
-
+    def test_make_empty(self):
+        ll = linked_list()
+        self.assertTrue(ll.empty())
+        ll.makeEmpty()
+        self.assertTrue(ll.empty())
+        ll.push_back(1)
+        self.assertFalse(ll.empty())
+        ll.makeEmpty()
+        self.assertTrue(ll.empty())
+    def test_one_node(self):
+        ll = linked_list()
+        self.assertFalse(ll.oneNode())
+        ll.push_back(1)
+        self.assertTrue(ll.oneNode())
+        ll.pop_back()
+        self.assertFalse(ll.oneNode())
+        
 if __name__ == '__main__':
     unittest.main()

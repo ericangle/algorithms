@@ -71,10 +71,11 @@ class linked_list(object):
     return self.head == self.tail and self.head != None
 
   def makeEmpty(self):
-    self.head = self.tail = None
+    if not self.empty():
+      self.head = self.tail = None
 
   def empty(self):
-    return self.head == None and self.tail == None
+    return self.head == self.tail == None
 
   def __len__(self):
     currentNode = self.head
