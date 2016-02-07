@@ -98,11 +98,9 @@ class linked_list(object):
     self.end = self.tail
     return self
 
-  def next(self): # in py 3, __next__
+  def next(self): # in python 3, __next__
     a = self.start
-    if a == self.end:
-        raise StopIteration
+    if a == None:
+      raise StopIteration
     self.start = a.nextNode
     return a
-
-  # could implement getitem instead       
