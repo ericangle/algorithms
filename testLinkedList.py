@@ -1,5 +1,13 @@
 import unittest
 from linkedList import linked_list
+from linkedList import node
+
+class test_node (unittest.TestCase):
+    def test_str(self):
+        n1 = node()
+        self.assertTrue(str(n1),"None")
+        n2 = node(1)
+        self.assertTrue(str(n2),"1")
 
 class test_linked_list (unittest.TestCase):
     def test_none(self):

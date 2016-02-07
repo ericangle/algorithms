@@ -1,4 +1,4 @@
-class Node(object):
+class node(object):
  
     def __init__(self, data=None, nextNode=None):
         self.data = data
@@ -15,7 +15,7 @@ class linked_list(object):
     self.tail = tail
 
   def push_back(self,data):
-    newNode = Node(data)
+    newNode = node(data)
     
     if self.empty():
       self.head = newNode
@@ -27,7 +27,7 @@ class linked_list(object):
   def push_front(self,data):
     wasEmpty = self.empty()
 
-    newNode = Node(data,self.head)
+    newNode = node(data,self.head)
     self.head = newNode
 
     if wasEmpty:
