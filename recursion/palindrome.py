@@ -1,6 +1,5 @@
-# not recursive, but ok for now
-# return myStr.replace(" ", "") 
 def remove_spaces(myStr):
+  # want to make recursive, otherwise use return myStr.replace(" ", "")
   if myStr == None:
     return None
   elif not isinstance(myStr, basestring):
