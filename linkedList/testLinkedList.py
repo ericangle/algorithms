@@ -55,6 +55,17 @@ class test_linked_list (unittest.TestCase):
         self.assertEquals(ll.pop_back(), "foo")
         self.assertEquals(ll.pop_back(), 1)
         self.assertTrue(ll.empty())
+    def test_reverse(self):
+        ll = linked_list()
+        ll.reverse()
+        self.assertTrue(ll.empty())
+        ll.push_back(1)
+        ll.push_back(2)
+        ll.push_back(3)
+        ll.reverse()
+        self.assertEquals(ll.pop_back(),1)
+        self.assertEquals(ll.pop_back(),2)
+        self.assertEquals(ll.pop_back(),3)
     def test_len(self):
         ll = linked_list()
         self.assertEquals(len(ll),0)
